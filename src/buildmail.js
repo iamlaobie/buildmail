@@ -446,11 +446,16 @@ MimeNode.prototype.buildHeaders = function() {
 
         switch (header.key) {
             case 'Content-Disposition':
+                /*
                 structured = libmime.parseHeaderValue(value);
                 if (_self.filename) {
                     structured.params.filename = _self.filename;
                 }
                 value = libmime.buildHeaderValue(structured);
+                */
+                if (_self.filename) {
+                    value += '; filename="' + _self._encodeHeaderValue('filename', _self.filename) + '"';
+                }
                 break;
             case 'Content-Type':
                 structured = libmime.parseHeaderValue(value);
